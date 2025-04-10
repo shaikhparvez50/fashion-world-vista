@@ -9,22 +9,28 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center z-0" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=2000&auto=format&fit=crop')`,
-          filter: 'brightness(0.5)',
+          backgroundImage: `url('https://images.unsplash.com/photo-1550246140-29f40b909e5a?q=80&w=2000&auto=format&fit=crop')`,
+          filter: 'brightness(0.4)',
         }}
       />
+      
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-1"></div>
       
       {/* Content */}
       <div className="content-container relative z-10 text-center my-20 md:my-0">
         <div className="animate-fade-in max-w-3xl mx-auto">
+          <div className="mb-6 inline-block">
+            <span className="text-sm font-medium tracking-widest text-fashion-gold uppercase bg-black/40 backdrop-blur-sm py-2 px-4 rounded-full">Premium Men's Fashion</span>
+          </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             THE FASHION WORLD
           </h1>
           <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-2xl mx-auto">
-            Your Style, Our Passion – Explore the World of Fashion for the Modern Man
+            Your Style, Our Passion – Explore the World of Fashion for the Modern Indian Man
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-            <Button className="btn-primary text-md md:text-lg py-6 px-8 group">
+            <Button className="bg-white text-black hover:bg-fashion-gold hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 group">
               Explore Collections
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -37,8 +43,8 @@ const Hero = () => {
       
       {/* Decorative elements */}
       <div className="absolute bottom-10 left-0 right-0 flex justify-center">
-        <div className="flex space-x-2">
-          <a href="#categories" className="animate-bounce text-white">
+        <div className="flex space-x-2 animate-bounce">
+          <a href="#categories" className="text-white">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>

@@ -1,37 +1,40 @@
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 const models = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-    outfit: "Casual Summer",
-    description: "Light cotton shirt with beige pants",
+    image: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=800&auto=format&fit=crop",
+    outfit: "Formal Elegance",
+    description: "Premium tailored suit with silk accessories",
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
-    outfit: "Business Formal",
-    description: "Navy blue suit with white shirt",
+    outfit: "Business Professional",
+    description: "Navy blue blazer with custom-fit trousers",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
-    outfit: "Urban Style",
-    description: "Denim jacket with graphic tee",
+    image: "https://images.unsplash.com/photo-1611048267451-e6ed903d4a38?q=80&w=800&auto=format&fit=crop",
+    outfit: "Urban Luxury",
+    description: "Designer casual wear with premium accessories",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
-    outfit: "Winter Collection",
-    description: "Wool coat with scarf and gloves",
+    image: "https://images.unsplash.com/photo-1617137968508-259d25d8d1c7?q=80&w=800&auto=format&fit=crop",
+    outfit: "Contemporary Ethnic",
+    description: "Modern Indian wear with traditional elements",
   },
 ];
 
 const ModelGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [favorites, setFavorites] = useState<Record<number, boolean>>({});
+  const { toast } = useToast();
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === models.length - 1 ? 0 : prev + 1));
@@ -41,39 +44,80 @@ const ModelGallery = () => {
     setCurrentIndex((prev) => (prev === 0 ? models.length - 1 : prev - 1));
   };
 
+  const toggleFavorite = (id: number) => {
+    setFavorites(prev => {
+      const newState = { ...prev, [id]: !prev[id] };
+      
+      toast({
+        title: newState[id] ? "Style saved" : "Style removed",
+        description: `This look has been ${newState[id] ? "added to" : "removed from"} your saved styles`,
+        duration: 3000,
+      });
+      
+      return newState;
+    });
+  };
+
   return (
-    <section className="section-padding bg-fashion-light-gray dark:bg-black relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-fashion-royal-blue/10 to-transparent z-0"></div>
+    <section className="section-padding bg-white dark:bg-black relative overflow-hidden py-20">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-100/20 to-transparent dark:from-fashion-royal-blue/5 dark:to-transparent z-0"></div>
       <div className="content-container relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Style Gallery</h2>
-          <p className="text-fashion-mid-gray dark:text-gray-400 max-w-3xl mx-auto">
-            Get inspired by our latest fashion trends and styling ideas.
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 dark:text-white">Premium Style Gallery</h2>
+          <p className="text-fashion-mid-gray dark:text-gray-300 max-w-3xl mx-auto">
+            Discover exclusive looks crafted for the distinguished gentleman.
           </p>
         </div>
 
         <div className="relative">
           {/* Large display */}
-          <div className="hidden md:flex items-center justify-center gap-8">
+          <div className="hidden md:grid grid-cols-4 gap-6">
             {models.map((model, index) => (
               <div 
                 key={model.id}
-                className={`transition-all duration-700 ease-in-out transform ${
+                className={`transition-all duration-700 ease-in-out transform hover:scale-105 ${
                   index === currentIndex 
-                    ? "opacity-100 scale-100" 
-                    : "opacity-40 scale-90"
+                    ? "opacity-100 scale-105" 
+                    : "opacity-90 scale-100"
                 }`}
               >
-                <div className="bg-white dark:bg-fashion-dark-gray shadow-lg rounded-lg overflow-hidden max-w-xs">
-                  <div className="h-96 overflow-hidden">
+                <div className="bg-white dark:bg-fashion-dark-gray shadow-xl rounded-lg overflow-hidden max-w-xs">
+                  <div className="h-96 overflow-hidden relative group">
                     <img 
                       src={model.image} 
                       alt={model.outfit} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                      <div className="p-4">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="bg-white/20 text-white border-white/10 backdrop-blur-sm hover:bg-white/30"
+                        >
+                          View Details
+                        </Button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{model.outfit}</h3>
+                  <div className="p-6 dark:bg-fashion-dark-gray">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-bold dark:text-white">{model.outfit}</h3>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => toggleFavorite(model.id)}
+                      >
+                        <Heart 
+                          className={`h-5 w-5 ${
+                            favorites[model.id]
+                              ? "fill-fashion-royal-blue text-fashion-royal-blue" 
+                              : "dark:text-white"
+                          }`} 
+                        />
+                      </Button>
+                    </div>
                     <p className="text-fashion-mid-gray dark:text-gray-400">{model.description}</p>
                   </div>
                 </div>
@@ -84,15 +128,31 @@ const ModelGallery = () => {
           {/* Mobile display - carousel */}
           <div className="md:hidden relative">
             <div className="overflow-hidden rounded-lg shadow-lg">
-              <div className="h-96">
+              <div className="h-96 relative">
                 <img 
                   src={models[currentIndex].image} 
                   alt={models[currentIndex].outfit} 
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute top-4 right-4">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
+                    onClick={() => toggleFavorite(models[currentIndex].id)}
+                  >
+                    <Heart 
+                      className={`h-5 w-5 ${
+                        favorites[models[currentIndex].id]
+                          ? "fill-fashion-royal-blue text-fashion-royal-blue" 
+                          : "text-white"
+                      }`} 
+                    />
+                  </Button>
+                </div>
               </div>
               <div className="p-6 bg-white dark:bg-fashion-dark-gray">
-                <h3 className="text-xl font-bold mb-2">{models[currentIndex].outfit}</h3>
+                <h3 className="text-xl font-bold mb-2 dark:text-white">{models[currentIndex].outfit}</h3>
                 <p className="text-fashion-mid-gray dark:text-gray-400">{models[currentIndex].description}</p>
               </div>
             </div>
@@ -101,7 +161,7 @@ const ModelGallery = () => {
             <Button 
               variant="secondary" 
               size="icon" 
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 dark:bg-black/80 rounded-full"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 backdrop-blur-sm text-white rounded-full z-10"
               onClick={prevSlide}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -109,7 +169,7 @@ const ModelGallery = () => {
             <Button 
               variant="secondary" 
               size="icon" 
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 dark:bg-black/80 rounded-full"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 backdrop-blur-sm text-white rounded-full z-10"
               onClick={nextSlide}
             >
               <ChevronRight className="h-5 w-5" />
