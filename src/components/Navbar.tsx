@@ -40,7 +40,7 @@ const Navbar = () => {
       <div className="content-container flex items-center justify-between">
         <div className="flex items-center">
           <a href="#" className="flex items-center">
-            <h1 className="text-2xl font-bold font-playfair tracking-wider text-fashion-dark-gray dark:text-white">
+            <h1 className="text-2xl font-bold font-playfair tracking-wider text-fashion-dark-gray dark:text-white whitespace-nowrap">
               THE FASHION WORLD
             </h1>
           </a>

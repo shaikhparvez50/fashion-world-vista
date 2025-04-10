@@ -88,7 +88,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Black and white accent styles (replacing gold) */
+/* Black and white accent styles */
 .bw-gradient {
   background: linear-gradient(90deg, #000000, #444444, #000000);
   -webkit-background-clip: text;
@@ -143,4 +143,12 @@
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
+}
+
+/* Fix for title overlapping */
+@media (max-width: 640px) {
+  h1.text-4xl {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
 }

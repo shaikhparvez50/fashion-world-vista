@@ -14,16 +14,16 @@ const Hero = () => {
         }}
       />
       
-      {/* Premium animated gradient overlay */}
+      {/* Black and white gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50 z-1"></div>
       
-      {/* Accent lines - now white instead of gold */}
+      {/* Accent lines */}
       <div className="absolute top-1/3 left-0 w-24 h-1 bg-white z-10 opacity-70"></div>
       <div className="absolute bottom-1/3 right-0 w-24 h-1 bg-white z-10 opacity-70"></div>
       
       {/* Content */}
-      <div className="content-container relative z-10 text-center my-20 md:my-0">
-        <div className="animate-fade-in max-w-3xl mx-auto">
+      <div className="content-container relative z-10 text-center my-20 md:my-0 px-4">
+        <div className="animate-fade-in max-w-3xl mx-auto flex flex-col items-center">
           <div className="mb-6 inline-block">
             <span className="text-sm font-medium tracking-widest text-white uppercase bg-black/70 backdrop-blur-sm py-2 px-4 rounded-full border border-white/20 shadow-lg">Premium Men's Fashion</span>
           </div>
@@ -45,7 +45,7 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Premium decorative elements */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-10 left-0 right-0 flex justify-center">
         <div className="flex space-x-2 animate-bounce">
           <a href="#categories" className="text-white">
@@ -56,7 +56,7 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Premium corner accents - now white instead of gold */}
+      {/* Corner accents */}
       <div className="absolute top-10 left-10 w-16 h-16 border-l-2 border-t-2 border-white opacity-50"></div>
       <div className="absolute top-10 right-10 w-16 h-16 border-r-2 border-t-2 border-white opacity-50"></div>
       <div className="absolute bottom-10 left-10 w-16 h-16 border-l-2 border-b-2 border-white opacity-50"></div>
