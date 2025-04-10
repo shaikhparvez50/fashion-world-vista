@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <a href="#" className="flex items-center">
             <h1 className="text-2xl font-bold font-playfair tracking-wider text-fashion-dark-gray dark:text-white">
-              THE FASHION <span className="text-fashion-royal-blue">WORLD</span>
+              THE FASHION WORLD
             </h1>
           </a>
         </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-fashion-dark-gray dark:text-white text-sm hover:text-fashion-royal-blue dark:hover:text-fashion-royal-blue transition-colors hover-underline"
+              className="text-fashion-dark-gray dark:text-white text-sm hover:text-black dark:hover:text-white transition-colors hover-underline"
             >
               {link.name}
             </a>
@@ -61,10 +61,10 @@ const Navbar = () => {
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-2">
-          <a href="#" className="hover:text-fashion-royal-blue transition-colors mr-2">
+          <a href="#" className="hover:text-black dark:hover:text-white transition-colors mr-2">
             <Instagram className="h-5 w-5" />
           </a>
-          <a href="#" className="hover:text-fashion-royal-blue transition-colors mr-4">
+          <a href="#" className="hover:text-black dark:hover:text-white transition-colors mr-4">
             <Facebook className="h-5 w-5" />
           </a>
           <LoginSignup />
@@ -93,7 +93,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-fashion-dark-gray dark:text-white hover:text-fashion-royal-blue dark:hover:text-fashion-royal-blue transition-colors py-2 border-b border-gray-100 dark:border-gray-800"
+                className="text-fashion-dark-gray dark:text-white hover:text-black dark:hover:text-white transition-colors py-2 border-b border-gray-100 dark:border-gray-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}

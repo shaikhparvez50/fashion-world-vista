@@ -77,26 +77,26 @@
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #1E3A8A, #3B82F6);
+  background: linear-gradient(90deg, #121212, #444444);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .dark .text-gradient {
-  background: linear-gradient(90deg, #60A5FA, #93C5FD);
+  background: linear-gradient(90deg, #CCCCCC, #FFFFFF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Gold accent styles */
-.gold-gradient {
-  background: linear-gradient(90deg, #bf9b30, #ffdc73, #bf9b30);
+/* Black and white accent styles (replacing gold) */
+.bw-gradient {
+  background: linear-gradient(90deg, #000000, #444444, #000000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-border {
-  border-color: rgba(191, 155, 48, 0.5);
+.bw-border {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Premium hover animations */
