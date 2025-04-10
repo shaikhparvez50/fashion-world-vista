@@ -14,34 +14,38 @@ const Hero = () => {
         }}
       />
       
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-1"></div>
+      {/* Premium animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50 z-1"></div>
+      
+      {/* Gold accent lines */}
+      <div className="absolute top-1/3 left-0 w-24 h-1 bg-gradient-to-r from-yellow-600 to-yellow-300 z-10 opacity-70"></div>
+      <div className="absolute bottom-1/3 right-0 w-24 h-1 bg-gradient-to-l from-yellow-600 to-yellow-300 z-10 opacity-70"></div>
       
       {/* Content */}
       <div className="content-container relative z-10 text-center my-20 md:my-0">
         <div className="animate-fade-in max-w-3xl mx-auto">
           <div className="mb-6 inline-block">
-            <span className="text-sm font-medium tracking-widest text-fashion-gold uppercase bg-black/40 backdrop-blur-sm py-2 px-4 rounded-full">Premium Men's Fashion</span>
+            <span className="text-sm font-medium tracking-widest text-yellow-500 uppercase bg-black/70 backdrop-blur-sm py-2 px-4 rounded-full border border-yellow-500/20 shadow-lg">Premium Men's Fashion</span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight text-shadow">
             THE FASHION WORLD
           </h1>
-          <p className="text-xl md:text-2xl font-light text-white mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl font-light text-white/90 mb-8 max-w-2xl mx-auto">
             Your Style, Our Passion – Explore the World of Fashion for the Modern Indian Man
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-            <Button className="bg-white text-black hover:bg-fashion-gold hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 group">
+            <Button className="bg-yellow-600 text-black hover:bg-yellow-500 hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 shadow-xl group premium-hover">
               Explore Collections
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10">
+            <Button variant="outline" className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10 shadow-xl premium-hover">
               Visit Store
             </Button>
           </div>
         </div>
       </div>
       
-      {/* Decorative elements */}
+      {/* Premium decorative elements */}
       <div className="absolute bottom-10 left-0 right-0 flex justify-center">
         <div className="flex space-x-2 animate-bounce">
           <a href="#categories" className="text-white">
@@ -51,6 +55,12 @@ const Hero = () => {
           </a>
         </div>
       </div>
+      
+      {/* Premium corner accents */}
+      <div className="absolute top-10 left-10 w-16 h-16 border-l-2 border-t-2 border-yellow-500 opacity-50"></div>
+      <div className="absolute top-10 right-10 w-16 h-16 border-r-2 border-t-2 border-yellow-500 opacity-50"></div>
+      <div className="absolute bottom-10 left-10 w-16 h-16 border-l-2 border-b-2 border-yellow-500 opacity-50"></div>
+      <div className="absolute bottom-10 right-10 w-16 h-16 border-r-2 border-b-2 border-yellow-500 opacity-50"></div>
     </div>
   );
 };

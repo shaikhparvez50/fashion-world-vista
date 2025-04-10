@@ -22,7 +22,6 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "#" },
     { name: "Men", href: "#men" },
-    { name: "Women", href: "#women" },
     { name: "Accessories", href: "#accessories" },
     { name: "Footwear", href: "#footwear" },
     { name: "Lifestyle", href: "#lifestyle" },

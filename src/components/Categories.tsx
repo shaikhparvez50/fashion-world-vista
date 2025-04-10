@@ -64,19 +64,22 @@ const Categories = () => {
   };
 
   return (
-    <section id="categories" className="section-padding bg-black dark:bg-black text-white">
+    <section id="categories" className="section-padding bg-black dark:bg-black text-white py-24">
       <div className="content-container">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Premium Collections</h2>
+        <div className="text-center mb-16 animate-slow-fade">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+            <span className="gold-gradient">Premium</span> Men's Collections
+          </h2>
           <p className="text-gray-300 max-w-3xl mx-auto text-lg">
             Discover our exclusive collection of premium fashion items, carefully curated for the modern Indian man.
           </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-yellow-600 to-yellow-300 mx-auto mt-8"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
             <div key={category.id} className="relative group">
-              <Card className="overflow-hidden card-hover border-0 shadow-lg bg-fashion-dark-gray/90 text-white transform transition-all duration-500 hover:-translate-y-2">
+              <Card className="overflow-hidden card-hover border-0 shadow-lg bg-fashion-dark-gray/90 text-white transform transition-all duration-500 hover:-translate-y-2 hover-scale">
                 <div className="relative h-72 overflow-hidden">
                   <img
                     src={category.image}
@@ -88,7 +91,7 @@ const Categories = () => {
                       <h3 className="text-2xl font-bold text-white mb-3">{category.title}</h3>
                       <div className="flex flex-wrap gap-2">
                         {category.items.map((item) => (
-                          <Badge key={item} variant="secondary" className="bg-white/20 hover:bg-white/30 text-white">
+                          <Badge key={item} variant="secondary" className="bg-yellow-600/30 hover:bg-yellow-600/50 text-yellow-100">
                             {item}
                           </Badge>
                         ))}
@@ -99,7 +102,7 @@ const Categories = () => {
                 <div className="p-4 flex justify-between items-center">
                   <Button 
                     variant="outline" 
-                    className="text-white border-white/20 hover:bg-white/10"
+                    className="text-white border-yellow-600/30 hover:bg-yellow-600/20 premium-button"
                   >
                     View Collection
                   </Button>
@@ -112,7 +115,7 @@ const Categories = () => {
                     <Heart 
                       className={`h-6 w-6 transition-colors ${
                         favorites[category.id] 
-                          ? "fill-fashion-royal-blue text-fashion-royal-blue" 
+                          ? "fill-yellow-500 text-yellow-500" 
                           : "text-white"
                       }`} 
                     />
