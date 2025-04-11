@@ -2,7 +2,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Categories from "../components/Categories";
-import BrandShowcase from "../components/BrandShowcase";
 import ModelGallery from "../components/ModelGallery";
 import Testimonials from "../components/Testimonials";
 import AboutUs from "../components/AboutUs";
@@ -16,7 +15,6 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <Categories />
-        <BrandShowcase />
         <ModelGallery />
         <Testimonials />
         <AboutUs />

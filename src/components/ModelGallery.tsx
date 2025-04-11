@@ -8,26 +8,26 @@ const models = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=800&auto=format&fit=crop",
-    outfit: "Formal Elegance",
+    outfit: "Men's Formal Elegance",
     description: "Premium tailored suit with silk accessories",
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
-    outfit: "Business Professional",
+    outfit: "Men's Business Professional",
     description: "Navy blue blazer with custom-fit trousers",
   },
   {
     id: 3,
     image: "https://images.unsplash.com/photo-1611048267451-e6ed903d4a38?q=80&w=800&auto=format&fit=crop",
-    outfit: "Urban Luxury",
+    outfit: "Men's Urban Luxury",
     description: "Designer casual wear with premium accessories",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1617137968508-259d25d8d1c7?q=80&w=800&auto=format&fit=crop",
-    outfit: "Contemporary Ethnic",
-    description: "Modern Indian wear with traditional elements",
+    image: "/lovable-uploads/56bd9bc1-57e1-4db8-a9df-13c829a273c1.png",
+    outfit: "Men's Premium Collection",
+    description: "Exclusive designer wear for the modern gentleman",
   },
 ];
 
@@ -63,7 +63,7 @@ const ModelGallery = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-100/20 to-transparent dark:from-fashion-royal-blue/5 dark:to-transparent z-0"></div>
       <div className="content-container relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 dark:text-white">Premium Style Gallery</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 dark:text-white">Men's Premium Style Gallery</h2>
           <p className="text-fashion-mid-gray dark:text-gray-300 max-w-3xl mx-auto">
             Discover exclusive looks crafted for the distinguished gentleman.
           </p>
