@@ -61,7 +61,12 @@ const Navbar = () => {
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-2">
-          <a href="#" className="hover:text-black dark:hover:text-white transition-colors mr-2">
+          <a 
+            href="https://www.instagram.com/the_faison_world?utm_source=qr&igsh=MTB1MmwwdGNkd2Z6YQ==" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="hover:text-black dark:hover:text-white transition-colors mr-2"
+          >
             <Instagram className="h-5 w-5" />
           </a>
           <a href="#" className="hover:text-black dark:hover:text-white transition-colors mr-4">
@@ -99,6 +104,16 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <a 
+              href="https://www.instagram.com/the_faison_world?utm_source=qr&igsh=MTB1MmwwdGNkd2Z6YQ==" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-fashion-dark-gray dark:text-white hover:text-black dark:hover:text-white transition-colors py-2 border-b border-gray-100 dark:border-gray-800 flex items-center"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Instagram className="h-5 w-5 mr-2" />
+              Follow on Instagram
+            </a>
           </nav>
         </div>
       )}

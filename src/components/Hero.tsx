@@ -1,5 +1,5 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
@@ -40,6 +40,14 @@ const Hero = () => {
             </Button>
             <Button variant="outline" className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10 shadow-xl premium-hover">
               Visit Store
+            </Button>
+            <Button 
+              variant="outline" 
+              className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10 shadow-xl premium-hover flex items-center"
+              onClick={() => window.open('https://www.instagram.com/the_faison_world?utm_source=qr&igsh=MTB1MmwwdGNkd2Z6YQ==', '_blank')}
+            >
+              <Instagram className="mr-2 h-5 w-5" />
+              Follow on Instagram
             </Button>
           </div>
         </div>
