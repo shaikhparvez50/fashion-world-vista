@@ -1,16 +1,19 @@
 
 import { ArrowRight, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image - Using one of the uploaded images */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0" 
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1550246140-29f40b909e5a?q=80&w=2000&auto=format&fit=crop')`,
-          filter: 'brightness(0.4)',
+          backgroundImage: `url('/lovable-uploads/56bd9bc1-57e1-4db8-a9df-13c829a273c1.png')`,
+          filter: 'brightness(0.3)',
         }}
       />
       
@@ -34,11 +37,18 @@ const Hero = () => {
             Your Style, Our Passion – Explore the World of Fashion for the Modern Indian Man
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-            <Button className="bg-white text-black hover:bg-gray-200 hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 shadow-xl group premium-hover">
+            <Button 
+              className="bg-white text-black hover:bg-gray-200 hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 shadow-xl group premium-hover"
+              onClick={() => navigate('/collections')}
+            >
               Explore Collections
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10 shadow-xl premium-hover">
+            <Button 
+              variant="outline" 
+              className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10 shadow-xl premium-hover"
+              onClick={() => navigate('/store-location')}
+            >
               Visit Store
             </Button>
             <Button 

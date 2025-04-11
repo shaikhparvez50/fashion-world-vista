@@ -1,46 +1,47 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Heart } from "lucide-react";
+import { Heart, Eye } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
     id: "men-formal",
     title: "Men's Formal Wear",
-    image: "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop",
+    image: "/lovable-uploads/f673e06a-6fd7-405c-b8cb-78e910d03d50.png",
     items: ["Suits", "Formal Shirts", "Trousers", "Ties"],
   },
   {
     id: "men-casual",
     title: "Men's Casual Wear",
-    image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=800&auto=format&fit=crop",
+    image: "/lovable-uploads/aa16e865-ac5c-4964-827b-1e48a94e830c.png",
     items: ["T-Shirts", "Casual Shirts", "Jeans", "Shorts"],
   },
   {
     id: "men-accessories",
     title: "Men's Accessories",
-    image: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=800&auto=format&fit=crop",
+    image: "/lovable-uploads/8331eff8-b9d6-4b97-8c19-c2838b882255.png",
     items: ["Rings", "Chains", "Bracelets", "Watches"],
   },
   {
     id: "men-footwear",
     title: "Men's Footwear",
-    image: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?q=80&w=800&auto=format&fit=crop",
+    image: "/lovable-uploads/ad9bbc5d-3b05-46f9-af2f-bf080df81e0c.png",
     items: ["Formal Shoes", "Sneakers", "Loafers", "Sandals"],
   },
   {
     id: "men-ethnic",
     title: "Men's Ethnic Wear",
-    image: "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?q=80&w=800&auto=format&fit=crop",
+    image: "/lovable-uploads/de86e0b9-614b-40de-bde0-df303cbb16db.png",
     items: ["Kurtas", "Sherwanis", "Nehru Jackets", "Dhotis"],
   },
   {
     id: "lifestyle",
     title: "Lifestyle",
-    image: "https://images.unsplash.com/photo-1516914589923-f105f1535f88?q=80&w=800&auto=format&fit=crop",
+    image: "/lovable-uploads/0fdf880a-8261-4c00-8a1d-c176912cf7ae.png",
     items: ["Premium Accessories", "Hookahs", "Pen Hookahs"],
   },
 ];
@@ -48,6 +49,7 @@ const categories = [
 const Categories = () => {
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const toggleFavorite = (id: string) => {
     setFavorites(prev => {
@@ -61,6 +63,14 @@ const Categories = () => {
       
       return newState;
     });
+  };
+
+  const handleViewCollection = () => {
+    navigate('/collections');
+  };
+
+  const handleViewDetails = (id: string) => {
+    navigate(`/collections?category=${id}`);
   };
 
   return (
@@ -103,27 +113,47 @@ const Categories = () => {
                   <Button 
                     variant="outline" 
                     className="text-white border-yellow-600/30 hover:bg-yellow-600/20 premium-button"
+                    onClick={() => handleViewDetails(category.id)}
                   >
                     View Collection
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    onClick={() => toggleFavorite(category.id)}
-                    className="rounded-full"
-                  >
-                    <Heart 
-                      className={`h-6 w-6 transition-colors ${
-                        favorites[category.id] 
-                          ? "fill-yellow-500 text-yellow-500" 
-                          : "text-white"
-                      }`} 
-                    />
-                  </Button>
+                  <div className="flex space-x-2">
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      onClick={() => handleViewDetails(category.id)}
+                      className="rounded-full"
+                    >
+                      <Eye className="h-5 w-5 text-white" />
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      onClick={() => toggleFavorite(category.id)}
+                      className="rounded-full"
+                    >
+                      <Heart 
+                        className={`h-5 w-5 transition-colors ${
+                          favorites[category.id] 
+                            ? "fill-yellow-500 text-yellow-500" 
+                            : "text-white"
+                        }`} 
+                      />
+                    </Button>
+                  </div>
                 </div>
               </Card>
             </div>
           ))}
+        </div>
+        
+        <div className="flex justify-center mt-12">
+          <Button 
+            className="bg-white text-black hover:bg-gray-200 hover:text-black text-md md:text-lg py-6 px-8 premium-hover"
+            onClick={handleViewCollection}
+          >
+            Browse All Collections
+          </Button>
         </div>
       </div>
     </section>

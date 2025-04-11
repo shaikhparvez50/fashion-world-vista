@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag, Instagram, Facebook } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import LoginSignup from "./LoginSignup";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,15 +22,36 @@ const Navbar = () => {
     };
   }, []);
 
+  // Close mobile menu when location changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "Men", href: "#men" },
-    { name: "Accessories", href: "#accessories" },
-    { name: "Footwear", href: "#footwear" },
-    { name: "Lifestyle", href: "#lifestyle" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "Collections", href: "/collections" },
+    { name: "Store Location", href: "/store-location" },
+    { name: "About", href: "/#about" },
+    { name: "Contact", href: "/#contact" },
   ];
+
+  const handleNavigate = (href: string) => {
+    if (href.startsWith('#') && location.pathname === '/') {
+      // If it's a hash link on the homepage, use hash navigation
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    } else if (href.includes('#') && !href.startsWith('#')) {
+      // If it's a hash link on another page, navigate to that page
+      const [path, hash] = href.split('#');
+      navigate(path);
+      setTimeout(() => {
+        document.querySelector(`#${hash}`)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      // Regular navigation
+      navigate(href);
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -39,7 +63,7 @@ const Navbar = () => {
     >
       <div className="content-container flex items-center justify-between">
         <div className="flex items-center">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <h1 className="text-2xl font-bold font-playfair tracking-wider text-fashion-dark-gray dark:text-white whitespace-nowrap">
               THE FASHION WORLD
             </h1>
@@ -52,7 +76,13 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-fashion-dark-gray dark:text-white text-sm hover:text-black dark:hover:text-white transition-colors hover-underline"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigate(link.href);
+              }}
+              className={`text-fashion-dark-gray dark:text-white text-sm hover:text-black dark:hover:text-white transition-colors hover-underline ${
+                location.pathname === link.href ? "font-semibold" : ""
+              }`}
             >
               {link.name}
             </a>
@@ -98,8 +128,13 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-fashion-dark-gray dark:text-white hover:text-black dark:hover:text-white transition-colors py-2 border-b border-gray-100 dark:border-gray-800"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate(link.href);
+                }}
+                className={`text-fashion-dark-gray dark:text-white hover:text-black dark:hover:text-white transition-colors py-2 border-b border-gray-100 dark:border-gray-800 ${
+                  location.pathname === link.href ? "font-semibold" : ""
+                }`}
               >
                 {link.name}
               </a>
