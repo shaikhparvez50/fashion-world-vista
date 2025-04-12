@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag, Eye, Filter, Flask, Cannabis } from "lucide-react";
+import { Heart, ShoppingBag, Eye, Filter, Wind, Cannabis } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -862,7 +862,7 @@ const CollectionsPage = () => {
                   }}
                   className="border-purple-500 text-white hover:bg-purple-800/30"
                 >
-                  <Flask className="mr-2 h-4 w-4" />
+                  <Wind className="mr-2 h-4 w-4" />
                   View All Vape & Hookah Products
                 </Button>
               </div>
