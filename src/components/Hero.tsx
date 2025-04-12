@@ -1,10 +1,50 @@
 
-import { ArrowRight, Instagram } from "lucide-react";
+import { ArrowRight, Instagram, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { 
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList
+} from "@/components/ui/command";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  // Sample product categories for search results
+  const searchCategories = [
+    { name: "Shirts", url: "/collections?category=Shirts" },
+    { name: "T-Shirts", url: "/collections?category=T-Shirts" },
+    { name: "Jeans", url: "/collections?tab=jeans" },
+    { name: "Shoes", url: "/collections?tab=shoes" },
+    { name: "Vape & Hookah", url: "/collections?tab=vape" },
+    { name: "Track Pants", url: "/collections?category=Track%20Pants" },
+  ];
+  
+  // Sample popular products for search results
+  const popularProducts = [
+    { name: "Blue & White Striped Shirt", url: "/product/item1" },
+    { name: "Distressed Light Wash Jeans", url: "/product/jeans1" },
+    { name: "Chunky Sole Streetwear Sneakers", url: "/product/shoes1" },
+    { name: "Premium E-Cigarette Kit", url: "/product/vape1" },
+  ];
+  
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/collections?search=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+      setSearchOpen(false);
+    }
+  };
   
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -36,6 +76,70 @@ const Hero = () => {
           <p className="text-xl md:text-2xl font-light text-white/90 mb-8 max-w-2xl mx-auto">
             Your Style, Our Passion – Explore the World of Fashion for the Modern Indian Man
           </p>
+          
+          {/* Search bar */}
+          <div className="w-full max-w-md mb-8 relative">
+            <form onSubmit={handleSearch} className="flex">
+              <div className="relative flex-grow">
+                <Input
+                  type="text"
+                  placeholder="Search for products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onClick={() => setSearchOpen(true)}
+                  className="h-12 pl-10 pr-4 rounded-l-full bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 transition-all duration-300"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
+              </div>
+              <Button 
+                type="submit" 
+                className="h-12 rounded-r-full bg-white text-black hover:bg-gray-200 px-6"
+              >
+                Search
+              </Button>
+            </form>
+          </div>
+          
+          {/* Search command dialog */}
+          <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
+            <Command className="rounded-lg border shadow-md">
+              <CommandInput 
+                placeholder="Search for products..." 
+                value={searchQuery}
+                onValueChange={setSearchQuery}
+              />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Categories">
+                  {searchCategories.map((category) => (
+                    <CommandItem
+                      key={category.url}
+                      onSelect={() => {
+                        navigate(category.url);
+                        setSearchOpen(false);
+                      }}
+                    >
+                      {category.name}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+                <CommandGroup heading="Popular Products">
+                  {popularProducts.map((product) => (
+                    <CommandItem
+                      key={product.url}
+                      onSelect={() => {
+                        navigate(product.url);
+                        setSearchOpen(false);
+                      }}
+                    >
+                      {product.name}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </CommandDialog>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <Button 
               className="bg-white text-black hover:bg-gray-200 hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 shadow-xl group premium-hover"

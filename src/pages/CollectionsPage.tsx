@@ -1,14 +1,15 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag, Eye, Filter, Wind, Cannabis } from "lucide-react";
+import { Heart, ShoppingBag, Eye, Filter, Wind, Cannabis, Search } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
 
 type ClothingItem = {
   id: string;
@@ -124,7 +125,6 @@ const clothingItems: ClothingItem[] = [
   },
 ];
 
-// Adding new jeans items using the uploaded images
 const jeansItems = [
   {
     id: "jeans1",
@@ -210,7 +210,6 @@ const jeansItems = [
   },
 ];
 
-// Adding new shoes items using the uploaded images
 const shoesItems = [
   {
     id: "shoes1",
@@ -269,7 +268,6 @@ const shoesItems = [
   },
 ];
 
-// Adding new vape and hookah items
 const vapeItems = [
   {
     id: "vape1",
@@ -301,7 +299,7 @@ const vapeItems = [
   },
   {
     id: "vape4",
-    name: "Blue Pepe Jeans Denim", // This was previously in jeans section
+    name: "Blue Pepe Jeans Denim",
     image: "/lovable-uploads/56bd9bc1-57e1-4db8-a9df-13c829a273c1.png",
     price: "₹1,899",
     brand: "VapeLife",
@@ -400,14 +398,15 @@ const vapeItems = [
   }
 ];
 
-// Combine all items for the complete collection
 const allItems = [...clothingItems, ...jeansItems, ...shoesItems, ...vapeItems];
 
 const CollectionsPage = () => {
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<string>("all");
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const { toast } = useToast();
+  const location = useLocation();
 
   const categories = [
     "All", 
@@ -421,8 +420,26 @@ const CollectionsPage = () => {
     "Hookah"
   ];
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tabParam = params.get("tab");
+    const categoryParam = params.get("category");
+    const searchParam = params.get("search");
+    
+    if (tabParam && ["all", "jeans", "shoes", "clothing", "vape"].includes(tabParam)) {
+      setActiveTab(tabParam);
+    }
+    
+    if (categoryParam) {
+      setActiveCategory(categoryParam);
+    }
+    
+    if (searchParam) {
+      setSearchQuery(searchParam);
+    }
+  }, [location]);
+
   const getFilteredItems = () => {
-    // First filter by tab selection
     let items = allItems;
     if (activeTab === "jeans") {
       items = jeansItems;
@@ -434,9 +451,18 @@ const CollectionsPage = () => {
       items = vapeItems;
     }
     
-    // Then filter by category if not "All"
     if (activeCategory !== "All") {
       items = items.filter(item => item.category === activeCategory);
+    }
+    
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      items = items.filter(item => 
+        item.name.toLowerCase().includes(query) || 
+        item.brand.toLowerCase().includes(query) || 
+        item.category.toLowerCase().includes(query) || 
+        item.tags.some(tag => tag.toLowerCase().includes(query))
+      );
     }
     
     return items;
@@ -458,49 +484,104 @@ const CollectionsPage = () => {
     });
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow pt-24">
-        <div className="bg-black text-white py-16">
-          <div className="content-container">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">Our Collections</h1>
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg mb-8">
+        <div className="bg-gradient-to-r from-gray-900 to-black text-white py-16">
+          <div className="content-container max-w-6xl mx-auto px-4">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center">Our Collections</h1>
+            <p className="text-gray-300 max-w-3xl mx-auto text-lg mb-8 text-center">
               Explore our premium collection of men's fashion items, featuring brands like Kochi Jordan, Allen Solly, and more.
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-yellow-600 to-yellow-300 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-600 to-yellow-300 mx-auto mb-8"></div>
+            
+            <div className="max-w-md mx-auto relative mb-6">
+              <Input
+                type="text"
+                placeholder="Search collections..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="pl-10 pr-10 py-6 h-auto bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/60 rounded-full"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
+              {searchQuery && (
+                <button 
+                  onClick={clearSearch}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
-        <section className="py-12 bg-white dark:bg-fashion-dark">
-          <div className="content-container">
-            {/* Main Tab Selection */}
+        <section className="py-12 bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-gray-800">
+          <div className="content-container max-w-6xl mx-auto px-4">
             <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-8">
-              <TabsList className="grid w-full grid-cols-5 md:w-auto md:inline-flex">
-                <TabsTrigger value="all" className="text-sm md:text-base">All Collections</TabsTrigger>
-                <TabsTrigger value="jeans" className="text-sm md:text-base">Jeans Collection</TabsTrigger>
-                <TabsTrigger value="shoes" className="text-sm md:text-base">Shoes Collection</TabsTrigger>
-                <TabsTrigger value="clothing" className="text-sm md:text-base">Clothing</TabsTrigger>
-                <TabsTrigger value="vape" className="text-sm md:text-base">Vape & Hookah</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-5 md:w-auto md:inline-flex bg-white/20 dark:bg-black/20 backdrop-blur-sm p-1 rounded-full border border-gray-200/20 dark:border-gray-700/20">
+                <TabsTrigger 
+                  value="all" 
+                  className="text-sm md:text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-black dark:data-[state=active]:bg-gray-800"
+                >
+                  All Collections
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="jeans" 
+                  className="text-sm md:text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-black dark:data-[state=active]:bg-gray-800"
+                >
+                  Jeans Collection
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="shoes" 
+                  className="text-sm md:text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-black dark:data-[state=active]:bg-gray-800"
+                >
+                  Shoes Collection
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="clothing" 
+                  className="text-sm md:text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-black dark:data-[state=active]:bg-gray-800"
+                >
+                  Clothing
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="vape" 
+                  className="text-sm md:text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-black dark:data-[state=active]:bg-gray-800"
+                >
+                  Vape & Hookah
+                </TabsTrigger>
               </TabsList>
             </Tabs>
 
-            {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-2 mb-10 overflow-x-auto pb-2">
-              {categories.map(category => (
-                <Button 
-                  key={category}
-                  variant={activeCategory === category ? "default" : "outline"}
-                  size="sm"
-                  className="m-1"
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                </Button>
-              ))}
+            <div className="flex flex-wrap justify-center gap-2 mb-10 overflow-x-auto pb-4">
+              <div className="bg-white/60 dark:bg-black/60 backdrop-blur-sm p-2 rounded-full inline-flex flex-wrap justify-center gap-2 shadow-lg border border-gray-200/30 dark:border-gray-700/30">
+                {categories.map(category => (
+                  <Button 
+                    key={category}
+                    variant={activeCategory === category ? "default" : "outline"}
+                    size="sm"
+                    className={`rounded-full ${
+                      activeCategory === category 
+                        ? "bg-gradient-to-r from-yellow-600 to-yellow-500 text-white border-transparent" 
+                        : "bg-transparent border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                    onClick={() => setActiveCategory(category)}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
             </div>
 
-            {/* Collection Header - Dynamic based on active tab */}
             <div className="mb-10 text-center">
               {activeTab === "jeans" && (
                 <div className="animate-fade-up">
@@ -536,11 +617,21 @@ const CollectionsPage = () => {
               )}
             </div>
 
-            {/* Product Grid */}
+            {searchQuery && (
+              <div className="mb-8 p-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-md">
+                <h3 className="text-lg font-medium mb-2">
+                  Search results for: <span className="font-bold italic">{searchQuery}</span>
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Found {filteredItems.length} item{filteredItems.length !== 1 ? 's' : ''}
+                </p>
+              </div>
+            )}
+
             {filteredItems.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredItems.map((item) => (
-                  <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group card-hover">
+                  <Card key={item.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 group card-hover bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-xl">
                     <div className="relative h-80 overflow-hidden">
                       <img 
                         src={item.image} 
@@ -552,7 +643,7 @@ const CollectionsPage = () => {
                           <Button 
                             variant="default" 
                             size="sm" 
-                            className="bg-white text-black hover:bg-gray-200"
+                            className="bg-white text-black hover:bg-gray-200 shadow-lg"
                           >
                             <ShoppingBag className="h-4 w-4 mr-1" />
                             Add to Cart
@@ -568,20 +659,20 @@ const CollectionsPage = () => {
                         </div>
                       </div>
                       {item.isFeatured && (
-                        <Badge className="absolute top-3 left-3 bg-yellow-600 text-white">Featured</Badge>
+                        <Badge className="absolute top-3 left-3 bg-gradient-to-r from-yellow-600 to-yellow-400 text-white border-none shadow-lg">Featured</Badge>
                       )}
                     </div>
-                    <CardContent className="p-4">
+                    <CardContent className="p-5">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">{item.brand}</p>
-                          <h3 className="font-medium text-lg mb-1">{item.name}</h3>
-                          <p className="text-lg font-bold">{item.price}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 font-medium">{item.brand}</p>
+                          <h3 className="font-semibold text-lg mb-2 line-clamp-2">{item.name}</h3>
+                          <p className="text-lg font-bold bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent">{item.price}</p>
                         </div>
                         <Button 
                           variant="ghost" 
                           size="icon" 
-                          className="mt-1" 
+                          className="mt-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full" 
                           onClick={() => window.location.href = `/product/${item.id}`}
                         >
                           <Eye className="h-5 w-5" />
@@ -589,7 +680,7 @@ const CollectionsPage = () => {
                       </div>
                       <div className="flex flex-wrap gap-1 mt-3">
                         {item.tags.map(tag => (
-                          <Badge key={tag} variant="secondary" className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                          <Badge key={tag} variant="secondary" className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                             {tag}
                           </Badge>
                         ))}
@@ -599,13 +690,14 @@ const CollectionsPage = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <p className="text-lg text-gray-500 dark:text-gray-400">No items found matching these filters.</p>
+              <div className="text-center py-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-md">
+                <p className="text-lg text-gray-500 dark:text-gray-400 mb-4">No items found matching these filters.</p>
                 <Button 
-                  variant="outline" 
-                  className="mt-4"
+                  variant="default" 
+                  className="bg-gradient-to-r from-yellow-600 to-yellow-400 text-white border-none"
                   onClick={() => {
                     setActiveCategory("All");
+                    setSearchQuery("");
                   }}
                 >
                   Reset Filters
@@ -615,7 +707,6 @@ const CollectionsPage = () => {
           </div>
         </section>
 
-        {/* Jeans Spotlight Section */}
         {activeTab === "all" && (
           <section className="py-16 bg-gray-100 dark:bg-gray-900">
             <div className="content-container">
@@ -639,7 +730,7 @@ const CollectionsPage = () => {
                         />
                       </div>
                       <div className="md:w-1/2 p-6 flex flex-col justify-center">
-                        <h3 className="text-xl font-bold mb-2">Kochi Jordan Distressed Jeans</h3>
+                        <h3 className="text-xl font-bold">Kochi Jordan Distressed Jeans</h3>
                         <p className="text-gray-600 dark:text-gray-400 mb-4">
                           Our signature distressed denim collection, handcrafted for the perfect balance of style and comfort.
                         </p>
@@ -699,7 +790,6 @@ const CollectionsPage = () => {
           </section>
         )}
 
-        {/* Footwear Spotlight Section */}
         {activeTab === "all" && (
           <section className="py-16 bg-white dark:bg-black">
             <div className="content-container">
@@ -776,7 +866,6 @@ const CollectionsPage = () => {
           </section>
         )}
 
-        {/* Vape & Hookah Spotlight Section */}
         {activeTab === "all" && (
           <section className="py-16 bg-gradient-to-br from-purple-900 to-black text-white">
             <div className="content-container">
@@ -870,7 +959,6 @@ const CollectionsPage = () => {
           </section>
         )}
 
-        {/* Featured Brands Section */}
         <section className="py-16 bg-gray-100 dark:bg-gray-900">
           <div className="content-container">
             <h2 className="text-3xl font-bold mb-8 text-center">Featured Brands</h2>
