@@ -29,6 +29,18 @@ const models = [
     outfit: "Men's Premium Collection",
     description: "Exclusive designer wear for the modern gentleman",
   },
+  {
+    id: 5,
+    image: "/lovable-uploads/646cab6e-1804-4712-b118-f75f5c60aa08.png",
+    outfit: "Men's Distressed Denim",
+    description: "Premium ripped jeans for edgy urban style",
+  },
+  {
+    id: 6,
+    image: "/lovable-uploads/fea2b134-dfba-4953-9e90-d4711ba17c15.png",
+    outfit: "Men's Streetwear Footwear",
+    description: "Trendy chunky sneakers for the fashion-forward man",
+  },
 ];
 
 const ModelGallery = () => {
@@ -71,7 +83,7 @@ const ModelGallery = () => {
 
         <div className="relative">
           {/* Large display */}
-          <div className="hidden md:grid grid-cols-4 gap-6">
+          <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-6">
             {models.map((model, index) => (
               <div 
                 key={model.id}
@@ -81,7 +93,7 @@ const ModelGallery = () => {
                     : "opacity-90 scale-100"
                 }`}
               >
-                <div className="bg-white dark:bg-fashion-dark-gray shadow-xl rounded-lg overflow-hidden max-w-xs">
+                <div className="bg-white dark:bg-fashion-dark-gray shadow-xl rounded-lg overflow-hidden max-w-xs mx-auto">
                   <div className="h-96 overflow-hidden relative group">
                     <img 
                       src={model.image} 

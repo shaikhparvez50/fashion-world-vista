@@ -5,9 +5,10 @@ import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag, Eye } from "lucide-react";
+import { Heart, ShoppingBag, Eye, Filter } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type ClothingItem = {
   id: string;
@@ -150,8 +151,157 @@ const clothingItems: ClothingItem[] = [
   }
 ];
 
+// Adding new jeans items using the uploaded images
+const jeansItems = [
+  {
+    id: "jeans1",
+    name: "Distressed Light Wash Jeans",
+    image: "/lovable-uploads/7c4ebb80-eaf4-4ccb-bbe5-1f6391329dbf.png",
+    price: "₹1,999",
+    brand: "Kochi Jordan",
+    category: "Jeans",
+    tags: ["Distressed", "Light Wash"],
+    isFeatured: true
+  },
+  {
+    id: "jeans2",
+    name: "Ripped Vintage Wash Denim",
+    image: "/lovable-uploads/646cab6e-1804-4712-b118-f75f5c60aa08.png",
+    price: "₹2,499",
+    brand: "Kochi Jordan",
+    category: "Jeans",
+    tags: ["Ripped", "Vintage"],
+  },
+  {
+    id: "jeans3",
+    name: "Classic Dark Wash Slim Fit",
+    image: "/lovable-uploads/326ccca9-366e-4003-bfd8-a81f194f9bbe.png",
+    price: "₹1,799",
+    brand: "Pepe Jeans",
+    category: "Jeans",
+    tags: ["Slim Fit", "Dark Wash"],
+  },
+  {
+    id: "jeans4",
+    name: "Patched Graphic Denim",
+    image: "/lovable-uploads/7fcee203-fa89-4982-a262-bd408b95655b.png",
+    price: "₹2,699",
+    brand: "CJ Streetwear",
+    category: "Jeans",
+    tags: ["Graphic", "Patched"],
+  },
+  {
+    id: "jeans5",
+    name: "Two-Tone Jogger Jeans",
+    image: "/lovable-uploads/85c397be-ee0d-446a-877c-6541a4211418.png",
+    price: "₹2,299",
+    brand: "Urban Denim",
+    category: "Jeans",
+    tags: ["Two-Tone", "Jogger"],
+  },
+  {
+    id: "jeans6",
+    name: "Military Patch Denim",
+    image: "/lovable-uploads/074a89f3-bff5-46e0-a9b5-8c2cccca38e5.png",
+    price: "₹2,199",
+    brand: "Army Style",
+    category: "Jeans",
+    tags: ["Patches", "Distressed"],
+  },
+  {
+    id: "jeans7",
+    name: "Cargo Pocket Distressed Jeans",
+    image: "/lovable-uploads/ea9d8356-cf51-4b2e-adde-7d22157f5d8e.png",
+    price: "₹2,399",
+    brand: "Urban Explorer",
+    category: "Jeans",
+    tags: ["Cargo", "Distressed"],
+  },
+  {
+    id: "jeans8",
+    name: "Classic Ripped Blue Jeans",
+    image: "/lovable-uploads/87581fa1-eb2b-4b06-a212-48eb6f4f6c64.png",
+    price: "₹1,899",
+    brand: "Denim Life",
+    category: "Jeans",
+    tags: ["Ripped", "Classic"],
+  },
+  {
+    id: "jeans9",
+    name: "Kids Style Denim",
+    image: "/lovable-uploads/520fc937-aa71-4377-bbbf-ed27354a6ab7.png",
+    price: "₹1,499",
+    brand: "Junior Style",
+    category: "Jeans",
+    tags: ["Kids", "Comfortable"],
+  },
+];
+
+// Adding new shoes items using the uploaded images
+const shoesItems = [
+  {
+    id: "shoes1",
+    name: "Chunky Sole Streetwear Sneakers",
+    image: "/lovable-uploads/fea2b134-dfba-4953-9e90-d4711ba17c15.png",
+    price: "₹3,499",
+    brand: "Y2KVB",
+    category: "Shoes",
+    tags: ["Chunky", "Streetwear"],
+    isFeatured: true
+  },
+  {
+    id: "shoes2",
+    name: "White Urban Sport Sneakers",
+    image: "/lovable-uploads/5caa1746-43f8-4a1e-8563-6e58746d1aa1.png",
+    price: "₹2,999",
+    brand: "Sport★Fashion",
+    category: "Shoes",
+    tags: ["White", "Urban"],
+  },
+  {
+    id: "shoes3",
+    name: "Red Accent Performance Runners",
+    image: "/lovable-uploads/64c418b4-6c2a-44b0-982d-49d7644805b0.png",
+    price: "₹3,299",
+    brand: "Active Run",
+    category: "Shoes",
+    tags: ["Running", "Performance"],
+  },
+  {
+    id: "shoes4",
+    name: "Dual Tone Chunky Sneakers",
+    image: "/lovable-uploads/70a20648-9096-4498-8fb0-c6c616c4558c.png",
+    price: "₹3,799",
+    brand: "Streetlife",
+    category: "Shoes",
+    tags: ["Chunky", "Fashion"],
+  },
+  {
+    id: "shoes5",
+    name: "Premium Air Max Style",
+    image: "/lovable-uploads/5d52e049-7556-4efa-8745-d92486001970.png",
+    price: "₹4,299",
+    brand: "Maximum Air",
+    category: "Shoes",
+    tags: ["Air Cushion", "Premium"],
+  },
+  {
+    id: "shoes6",
+    name: "Luxury Formal Leather Shoes",
+    image: "/lovable-uploads/1f0faea8-60ab-425e-8ab7-f03382cc08d6.png",
+    price: "₹4,999",
+    brand: "E Gold",
+    category: "Shoes",
+    tags: ["Formal", "Leather"],
+  },
+];
+
+// Combine all items for the complete collection
+const allItems = [...clothingItems, ...jeansItems, ...shoesItems];
+
 const CollectionsPage = () => {
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+  const [activeTab, setActiveTab] = useState<string>("all");
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const { toast } = useToast();
 
@@ -163,13 +313,31 @@ const CollectionsPage = () => {
     "Jeans", 
     "Trousers", 
     "Track Pants", 
+    "Shoes",
     "Lifestyle"
   ];
 
-  const filteredItems = activeCategory === "All" 
-    ? clothingItems 
-    : clothingItems.filter(item => item.category === activeCategory);
+  const getFilteredItems = () => {
+    // First filter by tab selection
+    let items = allItems;
+    if (activeTab === "jeans") {
+      items = jeansItems;
+    } else if (activeTab === "shoes") {
+      items = shoesItems;
+    } else if (activeTab === "clothing") {
+      items = clothingItems;
+    }
+    
+    // Then filter by category if not "All"
+    if (activeCategory !== "All") {
+      items = items.filter(item => item.category === activeCategory);
+    }
+    
+    return items;
+  };
 
+  const filteredItems = getFilteredItems();
+  
   const toggleFavorite = (id: string) => {
     setFavorites(prev => {
       const newState = { ...prev, [id]: !prev[id] };
@@ -200,11 +368,23 @@ const CollectionsPage = () => {
 
         <section className="py-12 bg-white dark:bg-fashion-dark">
           <div className="content-container">
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
+            {/* Main Tab Selection */}
+            <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-8">
+              <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-flex">
+                <TabsTrigger value="all" className="text-sm md:text-base">All Collections</TabsTrigger>
+                <TabsTrigger value="jeans" className="text-sm md:text-base">Jeans Collection</TabsTrigger>
+                <TabsTrigger value="shoes" className="text-sm md:text-base">Shoes Collection</TabsTrigger>
+                <TabsTrigger value="clothing" className="text-sm md:text-base">Clothing</TabsTrigger>
+              </TabsList>
+            </Tabs>
+
+            {/* Category Filters */}
+            <div className="flex flex-wrap justify-center gap-2 mb-10 overflow-x-auto pb-2">
               {categories.map(category => (
                 <Button 
                   key={category}
                   variant={activeCategory === category ? "default" : "outline"}
+                  size="sm"
                   className="m-1"
                   onClick={() => setActiveCategory(category)}
                 >
@@ -213,69 +393,275 @@ const CollectionsPage = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredItems.map((item) => (
-                <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group card-hover">
-                  <div className="relative h-80 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                      <div className="flex justify-center space-x-2 mb-4">
-                        <Button 
-                          variant="default" 
-                          size="sm" 
-                          className="bg-white text-black hover:bg-gray-200"
-                        >
-                          <ShoppingBag className="h-4 w-4 mr-1" />
-                          Add to Cart
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="icon" 
-                          className="bg-white/20 text-white backdrop-blur-sm border-white/20 hover:bg-white/30"
-                          onClick={() => toggleFavorite(item.id)}
-                        >
-                          <Heart className={`h-4 w-4 ${favorites[item.id] ? "fill-red-500 text-red-500" : ""}`} />
-                        </Button>
-                      </div>
-                    </div>
-                    {item.isFeatured && (
-                      <Badge className="absolute top-3 left-3 bg-yellow-600 text-white">Featured</Badge>
-                    )}
-                  </div>
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{item.brand}</p>
-                        <h3 className="font-medium text-lg mb-1">{item.name}</h3>
-                        <p className="text-lg font-bold">{item.price}</p>
-                      </div>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="mt-1" 
-                        onClick={() => window.location.href = `/product/${item.id}`}
-                      >
-                        <Eye className="h-5 w-5" />
-                      </Button>
-                    </div>
-                    <div className="flex flex-wrap gap-1 mt-3">
-                      {item.tags.map(tag => (
-                        <Badge key={tag} variant="secondary" className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            {/* Collection Header - Dynamic based on active tab */}
+            <div className="mb-10 text-center">
+              {activeTab === "jeans" && (
+                <div className="animate-fade-up">
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4">Premium Jeans Collection</h2>
+                  <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    From distressed denim to classic fits, explore our curated selection of premium jeans from top brands.
+                  </p>
+                </div>
+              )}
+              {activeTab === "shoes" && (
+                <div className="animate-fade-up">
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4">Exclusive Footwear Collection</h2>
+                  <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Step up your style with our range of high-quality sneakers, formal shoes, and athletic footwear.
+                  </p>
+                </div>
+              )}
+              {(activeTab === "clothing" || activeTab === "all") && activeCategory !== "All" && (
+                <div className="animate-fade-up">
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4">{activeCategory} Collection</h2>
+                  <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Premium quality {activeCategory.toLowerCase()} designed for comfort, style, and lasting impression.
+                  </p>
+                </div>
+              )}
             </div>
+
+            {/* Product Grid */}
+            {filteredItems.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredItems.map((item) => (
+                  <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group card-hover">
+                    <div className="relative h-80 overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <div className="flex justify-center space-x-2 mb-4">
+                          <Button 
+                            variant="default" 
+                            size="sm" 
+                            className="bg-white text-black hover:bg-gray-200"
+                          >
+                            <ShoppingBag className="h-4 w-4 mr-1" />
+                            Add to Cart
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="icon" 
+                            className="bg-white/20 text-white backdrop-blur-sm border-white/20 hover:bg-white/30"
+                            onClick={() => toggleFavorite(item.id)}
+                          >
+                            <Heart className={`h-4 w-4 ${favorites[item.id] ? "fill-red-500 text-red-500" : ""}`} />
+                          </Button>
+                        </div>
+                      </div>
+                      {item.isFeatured && (
+                        <Badge className="absolute top-3 left-3 bg-yellow-600 text-white">Featured</Badge>
+                      )}
+                    </div>
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">{item.brand}</p>
+                          <h3 className="font-medium text-lg mb-1">{item.name}</h3>
+                          <p className="text-lg font-bold">{item.price}</p>
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="mt-1" 
+                          onClick={() => window.location.href = `/product/${item.id}`}
+                        >
+                          <Eye className="h-5 w-5" />
+                        </Button>
+                      </div>
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        {item.tags.map(tag => (
+                          <Badge key={tag} variant="secondary" className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-lg text-gray-500 dark:text-gray-400">No items found matching these filters.</p>
+                <Button 
+                  variant="outline" 
+                  className="mt-4"
+                  onClick={() => {
+                    setActiveCategory("All");
+                  }}
+                >
+                  Reset Filters
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
+        {/* Jeans Spotlight Section */}
+        {activeTab === "all" && (
+          <section className="py-16 bg-gray-100 dark:bg-gray-900">
+            <div className="content-container">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Premium Denim Collection</h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                  Explore our exclusive range of high-quality jeans, from ripped designs to classic fits
+                </p>
+                <div className="w-16 h-1 bg-black dark:bg-white mx-auto mt-4"></div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="col-span-1 md:col-span-2">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-1/2 h-64 md:h-auto">
+                        <img 
+                          src="/lovable-uploads/7c4ebb80-eaf4-4ccb-bbe5-1f6391329dbf.png" 
+                          alt="Featured Jeans" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="md:w-1/2 p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold mb-2">Kochi Jordan Distressed Jeans</h3>
+                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                          Our signature distressed denim collection, handcrafted for the perfect balance of style and comfort.
+                        </p>
+                        <Button 
+                          onClick={() => {
+                            setActiveTab("jeans");
+                            setActiveCategory("Jeans");
+                          }}
+                          className="w-fit"
+                        >
+                          Shop Jeans Collection
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col gap-6">
+                  <Card className="overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/646cab6e-1804-4712-b118-f75f5c60aa08.png" 
+                      alt="Ripped Jeans" 
+                      className="h-48 w-full object-cover"
+                    />
+                    <CardContent className="p-4">
+                      <h4 className="font-medium">Vintage Ripped Style</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">From ₹1,999</p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/074a89f3-bff5-46e0-a9b5-8c2cccca38e5.png" 
+                      alt="Patched Jeans" 
+                      className="h-48 w-full object-cover"
+                    />
+                    <CardContent className="p-4">
+                      <h4 className="font-medium">Designer Patches</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">From ₹2,199</p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+              
+              <div className="text-center mt-10">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setActiveTab("jeans");
+                    setActiveCategory("Jeans");
+                  }}
+                >
+                  View All Jeans
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Footwear Spotlight Section */}
+        {activeTab === "all" && (
+          <section className="py-16 bg-white dark:bg-black">
+            <div className="content-container">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Trending Footwear</h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                  Step up your style with our exclusive collection of premium footwear
+                </p>
+                <div className="w-16 h-1 bg-black dark:bg-white mx-auto mt-4"></div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="overflow-hidden">
+                  <div className="h-72 relative">
+                    <img 
+                      src="/lovable-uploads/fea2b134-dfba-4953-9e90-d4711ba17c15.png" 
+                      alt="Street Style Sneakers" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-4 text-white">
+                        <h3 className="text-xl font-bold">Street Style</h3>
+                        <p className="text-sm opacity-80">Urban fashion statement pieces</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+                
+                <Card className="overflow-hidden">
+                  <div className="h-72 relative">
+                    <img 
+                      src="/lovable-uploads/5caa1746-43f8-4a1e-8563-6e58746d1aa1.png" 
+                      alt="Sport Fashion Sneakers" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-4 text-white">
+                        <h3 className="text-xl font-bold">Activewear</h3>
+                        <p className="text-sm opacity-80">Performance with style</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+                
+                <Card className="overflow-hidden">
+                  <div className="h-72 relative">
+                    <img 
+                      src="/lovable-uploads/1f0faea8-60ab-425e-8ab7-f03382cc08d6.png" 
+                      alt="Formal Shoes" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-4 text-white">
+                        <h3 className="text-xl font-bold">Formal Elegance</h3>
+                        <p className="text-sm opacity-80">Premium leather craftsmanship</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+              
+              <div className="text-center mt-10">
+                <Button
+                  onClick={() => {
+                    setActiveTab("shoes");
+                    setActiveCategory("All");
+                  }}
+                  className="bg-black text-white hover:bg-gray-800"
+                >
+                  Explore All Footwear
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Featured Brands Section */}
         <section className="py-16 bg-gray-100 dark:bg-gray-900">
           <div className="content-container">
             <h2 className="text-3xl font-bold mb-8 text-center">Featured Brands</h2>

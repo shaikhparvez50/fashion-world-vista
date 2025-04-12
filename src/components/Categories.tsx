@@ -21,22 +21,22 @@ const categories = [
     items: ["T-Shirts", "Casual Shirts", "Jeans", "Shorts"],
   },
   {
+    id: "men-jeans",
+    title: "Premium Jeans",
+    image: "/lovable-uploads/7c4ebb80-eaf4-4ccb-bbe5-1f6391329dbf.png",
+    items: ["Distressed", "Ripped", "Slim Fit", "Patched"],
+  },
+  {
+    id: "men-shoes",
+    title: "Premium Footwear",
+    image: "/lovable-uploads/fea2b134-dfba-4953-9e90-d4711ba17c15.png",
+    items: ["Sneakers", "Formals", "Sports", "Casual"],
+  },
+  {
     id: "men-accessories",
     title: "Men's Accessories",
     image: "/lovable-uploads/8331eff8-b9d6-4b97-8c19-c2838b882255.png",
     items: ["Rings", "Chains", "Bracelets", "Watches"],
-  },
-  {
-    id: "men-footwear",
-    title: "Men's Footwear",
-    image: "/lovable-uploads/ad9bbc5d-3b05-46f9-af2f-bf080df81e0c.png",
-    items: ["Formal Shoes", "Sneakers", "Loafers", "Sandals"],
-  },
-  {
-    id: "men-ethnic",
-    title: "Men's Ethnic Wear",
-    image: "/lovable-uploads/de86e0b9-614b-40de-bde0-df303cbb16db.png",
-    items: ["Kurtas", "Sherwanis", "Nehru Jackets", "Dhotis"],
   },
   {
     id: "lifestyle",
@@ -70,7 +70,14 @@ const Categories = () => {
   };
 
   const handleViewDetails = (id: string) => {
-    navigate(`/collections?category=${id}`);
+    // Navigate to appropriate tab based on category
+    if (id === 'men-jeans') {
+      navigate('/collections?tab=jeans');
+    } else if (id === 'men-shoes') {
+      navigate('/collections?tab=shoes');
+    } else {
+      navigate(`/collections?category=${id}`);
+    }
   };
 
   return (
