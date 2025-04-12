@@ -39,10 +39,10 @@ const categories = [
     items: ["Rings", "Chains", "Bracelets", "Watches"],
   },
   {
-    id: "lifestyle",
-    title: "Lifestyle",
+    id: "vape",
+    title: "Vape & Hookah Collection",
     image: "/lovable-uploads/0fdf880a-8261-4c00-8a1d-c176912cf7ae.png",
-    items: ["Premium Accessories", "Hookahs", "Pen Hookahs"],
+    items: ["Vape Pens", "Hookahs", "E-Liquids", "Accessories"],
   },
 ];
 
@@ -75,6 +75,8 @@ const Categories = () => {
       navigate('/collections?tab=jeans');
     } else if (id === 'men-shoes') {
       navigate('/collections?tab=shoes');
+    } else if (id === 'vape') {
+      navigate('/collections?tab=vape');
     } else {
       navigate(`/collections?category=${id}`);
     }

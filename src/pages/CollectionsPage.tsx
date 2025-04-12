@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag, Eye, Filter } from "lucide-react";
+import { Heart, ShoppingBag, Eye, Filter, Flask, Cannabis } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -96,24 +96,6 @@ const clothingItems: ClothingItem[] = [
     tags: ["Graphic", "Trendy"]
   },
   {
-    id: "item9",
-    name: "Blue Pepe Jeans Denim",
-    image: "/lovable-uploads/56bd9bc1-57e1-4db8-a9df-13c829a273c1.png",
-    price: "₹1,899",
-    brand: "Pepe Jeans",
-    category: "Jeans",
-    tags: ["Denim", "Casual"]
-  },
-  {
-    id: "item10",
-    name: "Premium Grey Formal Trousers",
-    image: "/lovable-uploads/f673e06a-6fd7-405c-b8cb-78e910d03d50.png",
-    price: "₹1,599",
-    brand: "Nice Tip Dress",
-    category: "Trousers",
-    tags: ["Formal", "Premium"]
-  },
-  {
     id: "item11",
     name: "Sportswear Ferrari Track Pants",
     image: "/lovable-uploads/11a3f567-6747-43c4-a641-33c741926369.png",
@@ -140,15 +122,6 @@ const clothingItems: ClothingItem[] = [
     category: "Shirts",
     tags: ["Casual", "Summer"]
   },
-  {
-    id: "item14",
-    name: "iStick Pico Vaping Kit",
-    image: "/lovable-uploads/0fdf880a-8261-4c00-8a1d-c176912cf7ae.png",
-    price: "₹2,499",
-    brand: "iStick",
-    category: "Lifestyle",
-    tags: ["Vape", "Accessories"]
-  }
 ];
 
 // Adding new jeans items using the uploaded images
@@ -296,8 +269,139 @@ const shoesItems = [
   },
 ];
 
+// Adding new vape and hookah items
+const vapeItems = [
+  {
+    id: "vape1",
+    name: "Premium E-Cigarette Kit",
+    image: "/lovable-uploads/039b08b4-2292-422e-baec-9df41484ab03.png",
+    price: "₹1,999",
+    brand: "VapeX",
+    category: "Vape",
+    tags: ["E-Cigarette", "Starter Kit"],
+    isFeatured: true
+  },
+  {
+    id: "vape2",
+    name: "Flavored Disposable Vape Pens Set",
+    image: "/lovable-uploads/e39c0adc-8f44-4f9f-82dc-3bd5dadf5011.png",
+    price: "₹1,499",
+    brand: "FruitVape",
+    category: "Vape",
+    tags: ["Disposable", "Flavored"],
+  },
+  {
+    id: "vape3",
+    name: "MYA Blue Clearomizer Kit",
+    image: "/lovable-uploads/94c7536b-37bc-47a6-aeb3-ca3c82b45aa1.png",
+    price: "₹2,299",
+    brand: "MYA",
+    category: "Vape",
+    tags: ["Clearomizer", "Premium"],
+  },
+  {
+    id: "vape4",
+    name: "Blue Pepe Jeans Denim", // This was previously in jeans section
+    image: "/lovable-uploads/56bd9bc1-57e1-4db8-a9df-13c829a273c1.png",
+    price: "₹1,899",
+    brand: "VapeLife",
+    category: "Vape",
+    tags: ["Vape", "Modern"],
+  },
+  {
+    id: "hookah1",
+    name: "Premium Glass Hookah Collection",
+    image: "/lovable-uploads/5208f75d-4594-491d-8769-49370b7bca76.png",
+    price: "₹4,499",
+    brand: "HookahZone",
+    category: "Hookah",
+    tags: ["Glass", "Premium"],
+  },
+  {
+    id: "hookah2",
+    name: "Crystal Skull Design Hookah Set",
+    image: "/lovable-uploads/86f0bc37-5a84-4ae3-9a74-9954489d578f.png",
+    price: "₹5,999",
+    brand: "Skull Shisha",
+    category: "Hookah",
+    tags: ["Crystal", "Designer"],
+  },
+  {
+    id: "hookah3",
+    name: "Elegant Black Shisha with LED",
+    image: "/lovable-uploads/56633dec-7d40-4d61-ae5f-47830895cb47.png",
+    price: "₹3,999",
+    brand: "NightGlow",
+    category: "Hookah",
+    tags: ["LED", "Modern"],
+  },
+  {
+    id: "hookah4",
+    name: "Blue Ice Hookah with LED",
+    image: "/lovable-uploads/2d79a1f3-4742-40f6-b32e-40199bcb7219.png",
+    price: "₹4,299",
+    brand: "IceVape",
+    category: "Hookah",
+    tags: ["LED", "Ice Design"],
+  },
+  {
+    id: "vape5",
+    name: "Rainbow SMOK Vape Pen",
+    image: "/lovable-uploads/cd17e6aa-9dce-48dc-8720-2c1a6b14085e.png",
+    price: "₹2,799",
+    brand: "SMOK",
+    category: "Vape",
+    tags: ["Rainbow", "Premium"],
+  },
+  {
+    id: "vape6",
+    name: "Colorful Light Show Pen Vapes",
+    image: "/lovable-uploads/27d9a13b-3f6b-4b8b-b9b4-3ff9a02ce8b6.png",
+    price: "₹1,699",
+    brand: "SpectroVape",
+    category: "Vape",
+    tags: ["Light Show", "Colorful"],
+  },
+  {
+    id: "vape7",
+    name: "Crown Bar Advanced LED Display",
+    image: "/lovable-uploads/c9a2617b-af0c-4c7f-ab6e-459debbf6ee7.png",
+    price: "₹3,499",
+    brand: "Crown Bar",
+    category: "Vape",
+    tags: ["LED Display", "Premium"],
+  },
+  {
+    id: "vape8",
+    name: "Premium Vaping Device Set",
+    image: "/lovable-uploads/3e06d190-0222-45a6-93cb-8c660f3326e8.png",
+    price: "₹5,999",
+    brand: "ProVapeTech",
+    category: "Vape",
+    tags: ["Premium", "Complete Set"],
+  },
+  {
+    id: "vape9",
+    name: "iStick Pico Vaping Kit",
+    image: "/lovable-uploads/0fdf880a-8261-4c00-8a1d-c176912cf7ae.png",
+    price: "₹2,499",
+    brand: "iStick",
+    category: "Vape",
+    tags: ["Vape", "Accessories"],
+  },
+  {
+    id: "vape10",
+    name: "Advanced E-Cigarette",
+    image: "/lovable-uploads/3dfad513-7977-407c-a905-fa48adb7f0dc.png",
+    price: "₹2,999",
+    brand: "VapeTech",
+    category: "Vape",
+    tags: ["E-Cigarette", "Advanced"],
+  }
+];
+
 // Combine all items for the complete collection
-const allItems = [...clothingItems, ...jeansItems, ...shoesItems];
+const allItems = [...clothingItems, ...jeansItems, ...shoesItems, ...vapeItems];
 
 const CollectionsPage = () => {
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
@@ -311,10 +415,10 @@ const CollectionsPage = () => {
     "T-Shirts", 
     "Pants", 
     "Jeans", 
-    "Trousers", 
     "Track Pants", 
     "Shoes",
-    "Lifestyle"
+    "Vape",
+    "Hookah"
   ];
 
   const getFilteredItems = () => {
@@ -326,6 +430,8 @@ const CollectionsPage = () => {
       items = shoesItems;
     } else if (activeTab === "clothing") {
       items = clothingItems;
+    } else if (activeTab === "vape") {
+      items = vapeItems;
     }
     
     // Then filter by category if not "All"
@@ -370,11 +476,12 @@ const CollectionsPage = () => {
           <div className="content-container">
             {/* Main Tab Selection */}
             <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-8">
-              <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-flex">
+              <TabsList className="grid w-full grid-cols-5 md:w-auto md:inline-flex">
                 <TabsTrigger value="all" className="text-sm md:text-base">All Collections</TabsTrigger>
                 <TabsTrigger value="jeans" className="text-sm md:text-base">Jeans Collection</TabsTrigger>
                 <TabsTrigger value="shoes" className="text-sm md:text-base">Shoes Collection</TabsTrigger>
                 <TabsTrigger value="clothing" className="text-sm md:text-base">Clothing</TabsTrigger>
+                <TabsTrigger value="vape" className="text-sm md:text-base">Vape & Hookah</TabsTrigger>
               </TabsList>
             </Tabs>
 
@@ -408,6 +515,14 @@ const CollectionsPage = () => {
                   <h2 className="text-2xl md:text-4xl font-bold mb-4">Exclusive Footwear Collection</h2>
                   <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
                     Step up your style with our range of high-quality sneakers, formal shoes, and athletic footwear.
+                  </p>
+                </div>
+              )}
+              {activeTab === "vape" && (
+                <div className="animate-fade-up">
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4">Premium Vape & Hookah Collection</h2>
+                  <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Discover our exclusive range of high-quality vape devices, hookahs, and accessories for the modern lifestyle.
                   </p>
                 </div>
               )}
@@ -661,12 +776,106 @@ const CollectionsPage = () => {
           </section>
         )}
 
+        {/* Vape & Hookah Spotlight Section */}
+        {activeTab === "all" && (
+          <section className="py-16 bg-gradient-to-br from-purple-900 to-black text-white">
+            <div className="content-container">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Lifestyle Collection</h2>
+                <p className="text-gray-300 max-w-3xl mx-auto">
+                  Explore our premium range of vapes, hookahs, and lifestyle accessories
+                </p>
+                <div className="w-16 h-1 bg-gradient-to-r from-purple-400 to-pink-500 mx-auto mt-4"></div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="col-span-1 md:col-span-2">
+                  <div className="bg-gradient-to-br from-purple-800/70 to-black/70 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg border border-purple-500/30">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-1/2 h-64 md:h-auto relative">
+                        <img 
+                          src="/lovable-uploads/56633dec-7d40-4d61-ae5f-47830895cb47.png" 
+                          alt="Premium Hookah" 
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+                      </div>
+                      <div className="md:w-1/2 p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold mb-2">Premium Hookah Collection</h3>
+                        <p className="text-gray-300 mb-4">
+                          Exquisite hookahs crafted with precision and style, featuring premium materials and stunning designs.
+                        </p>
+                        <Button 
+                          onClick={() => {
+                            setActiveTab("vape");
+                            setActiveCategory("Hookah");
+                          }}
+                          className="w-fit bg-purple-600 hover:bg-purple-700"
+                        >
+                          <Cannabis className="mr-2 h-4 w-4" />
+                          Shop Hookah Collection
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col gap-6">
+                  <Card className="overflow-hidden bg-gradient-to-br from-purple-800/70 to-black/70 text-white border border-purple-500/30">
+                    <div className="relative">
+                      <img 
+                        src="/lovable-uploads/039b08b4-2292-422e-baec-9df41484ab03.png" 
+                        alt="Vape Pen" 
+                        className="h-48 w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+                    </div>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium">Premium Vape Pens</h4>
+                      <p className="text-sm text-gray-300">From ₹1,999</p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="overflow-hidden bg-gradient-to-br from-purple-800/70 to-black/70 text-white border border-purple-500/30">
+                    <div className="relative">
+                      <img 
+                        src="/lovable-uploads/cd17e6aa-9dce-48dc-8720-2c1a6b14085e.png" 
+                        alt="SMOK Vape" 
+                        className="h-48 w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"></div>
+                    </div>
+                    <CardContent className="p-4">
+                      <h4 className="font-medium">SMOK Rainbow Series</h4>
+                      <p className="text-sm text-gray-300">From ₹2,799</p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+              
+              <div className="text-center mt-10">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setActiveTab("vape");
+                    setActiveCategory("All");
+                  }}
+                  className="border-purple-500 text-white hover:bg-purple-800/30"
+                >
+                  <Flask className="mr-2 h-4 w-4" />
+                  View All Vape & Hookah Products
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Featured Brands Section */}
         <section className="py-16 bg-gray-100 dark:bg-gray-900">
           <div className="content-container">
             <h2 className="text-3xl font-bold mb-8 text-center">Featured Brands</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {['Kochi Jordan', 'Allen Solly', 'Nike', 'Puma', 'Adidas', 'Ferrari', 'H&M', 'Pepe Jeans', 'AMIRI'].map((brand) => (
+              {['Kochi Jordan', 'Allen Solly', 'Nike', 'Puma', 'SMOK', 'Crown Bar', 'VapeX', 'Skull Shisha', 'H&M', 'AMIRI'].map((brand) => (
                 <div key={brand} className="bg-white dark:bg-gray-800 rounded-lg p-6 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-lg font-semibold">{brand}</p>
                 </div>
