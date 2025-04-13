@@ -19,20 +19,20 @@ const Hero = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
-  // Sample product categories for search results
+  // Sample product categories for search results with improved SEO keywords
   const searchCategories = [
-    { name: "Shirts", url: "/collections?category=Shirts" },
-    { name: "T-Shirts", url: "/collections?category=T-Shirts" },
-    { name: "Jeans", url: "/collections?tab=jeans" },
-    { name: "Shoes", url: "/collections?tab=shoes" },
-    { name: "Vape & Hookah", url: "/collections?tab=vape" },
-    { name: "Track Pants", url: "/collections?category=Track%20Pants" },
+    { name: "Premium Shirts", url: "/collections?category=Shirts" },
+    { name: "Trendy T-Shirts", url: "/collections?category=T-Shirts" },
+    { name: "Designer Jeans", url: "/collections?tab=jeans" },
+    { name: "Stylish Footwear", url: "/collections?tab=shoes" },
+    { name: "Vape & Hookah Collection", url: "/collections?tab=vape" },
+    { name: "Comfortable Track Pants", url: "/collections?category=Track%20Pants" },
   ];
   
-  // Sample popular products for search results
+  // Sample popular products for search results with SEO keywords
   const popularProducts = [
-    { name: "Blue & White Striped Shirt", url: "/product/item1" },
-    { name: "Distressed Light Wash Jeans", url: "/product/jeans1" },
+    { name: "Blue & White Striped Premium Shirt", url: "/product/item1" },
+    { name: "Distressed Light Wash Designer Jeans", url: "/product/jeans1" },
     { name: "Chunky Sole Streetwear Sneakers", url: "/product/shoes1" },
     { name: "Premium E-Cigarette Kit", url: "/product/vape1" },
   ];
@@ -55,41 +55,46 @@ const Hero = () => {
           backgroundImage: `url('/lovable-uploads/56bd9bc1-57e1-4db8-a9df-13c829a273c1.png')`,
           filter: 'brightness(0.3)',
         }}
+        aria-hidden="true"
       />
       
       {/* Black and white gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50 z-1"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50 z-1" aria-hidden="true"></div>
       
       {/* Accent lines */}
-      <div className="absolute top-1/3 left-0 w-24 h-1 bg-white z-10 opacity-70"></div>
-      <div className="absolute bottom-1/3 right-0 w-24 h-1 bg-white z-10 opacity-70"></div>
+      <div className="absolute top-1/3 left-0 w-24 h-1 bg-white z-10 opacity-70" aria-hidden="true"></div>
+      <div className="absolute bottom-1/3 right-0 w-24 h-1 bg-white z-10 opacity-70" aria-hidden="true"></div>
       
       {/* Content */}
       <div className="content-container relative z-10 text-center my-20 md:my-0 px-4">
         <div className="animate-fade-in max-w-3xl mx-auto flex flex-col items-center">
           <div className="mb-6 inline-block">
-            <span className="text-sm font-medium tracking-widest text-white uppercase bg-black/70 backdrop-blur-sm py-2 px-4 rounded-full border border-white/20 shadow-lg">Premium Men's Fashion</span>
+            <span className="text-sm font-medium tracking-widest text-white uppercase bg-black/70 backdrop-blur-sm py-2 px-4 rounded-full border border-white/20 shadow-lg">Premium Men's Fashion Store</span>
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight text-shadow">
             THE FASHION WORLD
           </h1>
-          <p className="text-xl md:text-2xl font-light text-white/90 mb-8 max-w-2xl mx-auto">
-            Your Style, Our Passion – Explore the World of Fashion for the Modern Indian Man
+          <h2 className="text-xl md:text-2xl font-light text-white/90 mb-8 max-w-2xl mx-auto">
+            <span className="font-semibold">Premium Men's Clothing in Amarpur, Bihar</span> - Your Style, Our Passion
+          </h2>
+          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+            Explore our exclusive collection of designer jeans, stylish t-shirts, premium footwear, and trendy accessories for the modern Indian man.
           </p>
           
           {/* Search bar */}
           <div className="w-full max-w-md mb-8 relative">
-            <form onSubmit={handleSearch} className="flex">
+            <form onSubmit={handleSearch} className="flex" aria-label="Search The Fashion World products">
               <div className="relative flex-grow">
                 <Input
                   type="text"
-                  placeholder="Search for products..."
+                  placeholder="Search for men's clothing, footwear, accessories..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onClick={() => setSearchOpen(true)}
                   className="h-12 pl-10 pr-4 rounded-l-full bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/60 focus:bg-white/20 transition-all duration-300"
+                  aria-label="Search products"
                 />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" aria-hidden="true" />
               </div>
               <Button 
                 type="submit" 
@@ -104,7 +109,7 @@ const Hero = () => {
           <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
             <Command className="rounded-lg border shadow-md">
               <CommandInput 
-                placeholder="Search for products..." 
+                placeholder="Search for men's clothing, footwear, accessories..." 
                 value={searchQuery}
                 onValueChange={setSearchQuery}
               />
@@ -145,7 +150,7 @@ const Hero = () => {
               className="bg-white text-black hover:bg-gray-200 hover:text-black transition-all duration-300 text-md md:text-lg py-6 px-8 shadow-xl group premium-hover"
               onClick={() => navigate('/collections')}
             >
-              Explore Collections
+              Explore Men's Collections
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
@@ -153,7 +158,7 @@ const Hero = () => {
               className="text-md md:text-lg py-6 px-8 text-white bg-transparent border-white hover:bg-white/10 shadow-xl premium-hover"
               onClick={() => navigate('/store-location')}
             >
-              Visit Store
+              Visit Our Store
             </Button>
             <Button 
               variant="outline" 
@@ -170,8 +175,8 @@ const Hero = () => {
       {/* Scroll indicator */}
       <div className="absolute bottom-10 left-0 right-0 flex justify-center">
         <div className="flex space-x-2 animate-bounce">
-          <a href="#categories" className="text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a href="#categories" className="text-white" aria-label="Scroll to categories">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </a>
@@ -179,10 +184,10 @@ const Hero = () => {
       </div>
       
       {/* Corner accents */}
-      <div className="absolute top-10 left-10 w-16 h-16 border-l-2 border-t-2 border-white opacity-50"></div>
-      <div className="absolute top-10 right-10 w-16 h-16 border-r-2 border-t-2 border-white opacity-50"></div>
-      <div className="absolute bottom-10 left-10 w-16 h-16 border-l-2 border-b-2 border-white opacity-50"></div>
-      <div className="absolute bottom-10 right-10 w-16 h-16 border-r-2 border-b-2 border-white opacity-50"></div>
+      <div className="absolute top-10 left-10 w-16 h-16 border-l-2 border-t-2 border-white opacity-50" aria-hidden="true"></div>
+      <div className="absolute top-10 right-10 w-16 h-16 border-r-2 border-t-2 border-white opacity-50" aria-hidden="true"></div>
+      <div className="absolute bottom-10 left-10 w-16 h-16 border-l-2 border-b-2 border-white opacity-50" aria-hidden="true"></div>
+      <div className="absolute bottom-10 right-10 w-16 h-16 border-r-2 border-b-2 border-white opacity-50" aria-hidden="true"></div>
     </div>
   );
 };
