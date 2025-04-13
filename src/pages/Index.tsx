@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -9,7 +8,7 @@ import Testimonials from "../components/Testimonials";
 import AboutUs from "../components/AboutUs";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const Index = () => {
   const location = useLocation();
