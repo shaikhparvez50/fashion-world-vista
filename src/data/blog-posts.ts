@@ -15,106 +15,191 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     id: "1",
-    title: "Top 5 Denim Trends for 2025",
-    slug: "top-5-denim-trends-2025",
-    excerpt: "Discover the hottest denim trends that will dominate the fashion scene in 2025. From relaxed fits to sustainable washes, we cover it all.",
+    title: "Summer Fashion Trends 2025",
+    slug: "summer-fashion-trends-2025",
+    excerpt: "Summer 2025 is all about cool tones, light fabrics, and bold accessories. Think pastel shirts paired with silver chains, loose joggers with trendy belts, and breathable kurtas for festive vibes.",
     content: `
-# Top 5 Denim Trends for 2025
+# Summer Fashion Trends 2025
 
-Denim is always evolving, and 2025 brings some exciting new trends to the table. As a premier men's fashion store in Amarpur, Bihar, we're excited to share the latest styles that are making waves in the fashion world.
+Summer 2025 is all about cool tones, light fabrics, and bold accessories. Think pastel shirts paired with silver chains, loose joggers with trendy belts, and breathable kurtas for festive vibes. At The Fashion World, we've picked the hottest trends that keep you cool and stylish — whether you're on campus or chilling with friends.
 
-## 1. Relaxed Straight Legs
+## Key Trends for Summer 2025:
 
-The skinny jean era is officially over! Relaxed straight-leg jeans are the silhouette of the year. They provide comfort without sacrificing style, making them perfect for both casual outings and semi-formal events when paired with the right top.
+* Pastel Color Palette
+* Lightweight, Breathable Fabrics
+* Statement Accessories
+* Loose-Fit Silhouettes
+* Traditional Fusion Wear
 
-## 2. Sustainable Washes
-
-Eco-conscious fashion is no longer just a trend but a movement. Denim brands are increasingly adopting water-saving washing techniques and organic cotton. These sustainable washes not only reduce environmental impact but also create unique, naturally worn looks.
-
-## 3. Statement Pockets
-
-Forget minimalism when it comes to pockets in 2025. Oversized, contrast-stitched, and uniquely shaped pockets are becoming a major design element in denim fashion.
-
-## 4. Vintage-Inspired Cuts
-
-What's old is new again! High-waisted, wide-leg jeans inspired by the 70s and 90s are making a strong comeback, offering a retro aesthetic with modern comfort.
-
-## 5. Bold Colors
-
-While classic blue denim will never go out of style, 2025 is all about experimenting with bold colors. From earthy terracottas to vibrant greens, colored denim is a great way to stand out.
-
-Visit our store at The Fashion World in Amarpur to explore our latest denim collection featuring all these trending styles!
+Visit our store to explore our curated summer collection that combines comfort with style.
     `,
     author: "Rahul Sharma",
-    date: "2025-04-15",
-    imageUrl: "/lovable-uploads/87581fa1-eb2b-4b06-a212-48eb6f4f6c64.png",
-    tags: ["denim", "jeans", "fashion trends", "men's style"],
+    date: "2025-04-18",
+    imageUrl: "/lovable-uploads/27d9a13b-3f6b-4b8b-b9b4-3ff9a02ce8b6.png",
+    tags: ["summer fashion", "trends", "2025", "men's style"],
     category: "Fashion Trends"
   },
   {
     id: "2",
-    title: "How to Style White Sneakers for Every Occasion",
-    slug: "style-white-sneakers-every-occasion",
-    excerpt: "White sneakers are a versatile footwear option that can be styled for almost any setting. Learn how to wear them from casual outings to semi-formal events.",
+    title: "Top 5 Must-Have Accessories for Men",
+    slug: "must-have-accessories-men",
+    excerpt: "Want to upgrade your look in seconds? Accessories are the key. A sleek watch, a chunky ring, a classic belt, a stylish chain, and a signature hookah piece can completely change your vibe.",
     content: `
-# How to Style White Sneakers for Every Occasion
+# Top 5 Must-Have Accessories for Men
 
-White sneakers are the chameleons of men's footwear - incredibly versatile and appropriate for almost any setting when styled correctly. Here's our guide on how to wear your favorite white kicks for different occasions.
+Want to upgrade your look in seconds? Accessories are the key. These five essential items can turn your simple outfit into a standout statement.
 
-## Casual Everyday Look
+## 1. The Timeless Watch
+A sleek timepiece that speaks volumes about your style and punctuality.
 
-Pair your white sneakers with:
-- Slim or straight jeans (cuffed at the bottom for a modern touch)
-- A simple T-shirt or henley
-- A light jacket or overshirt
+## 2. Statement Rings
+From minimalist bands to bold designs, find your signature piece.
 
-This combination works for running errands, meeting friends for coffee, or casual weekend activities.
+## 3. Classic Belts
+The perfect finishing touch that pulls your outfit together.
 
-## Smart Casual Office
+## 4. Trendy Chains
+Add edge to any outfit with the right chain.
 
-For a business casual environment:
-- Chinos or tailored trousers
-- A crisp button-down shirt
-- A lightweight blazer (optional)
-- Clean, minimalist white sneakers
+## 5. Signature Hookah
+Make a statement with a personalized piece that reflects your style.
 
-This look strikes the perfect balance between professional and approachable.
-
-## Summer Parties
-
-For outdoor gatherings:
-- Shorts (tailored, not athletic)
-- A short-sleeve button-up shirt
-- Low-profile white sneakers
-- No-show socks
-
-This ensemble keeps you looking put-together while staying cool.
-
-## Date Night
-
-For a stylish impression:
-- Dark jeans or trousers
-- A textured shirt or polo
-- A bomber jacket or lightweight coat
-- Premium white leather sneakers
-
-This outfit shows you've made an effort without appearing overdressed.
-
-## Semi-Formal Events
-
-For occasions with a somewhat relaxed dress code:
-- Tailored suit in navy or gray
-- Dress shirt (no tie)
-- High-quality white leather sneakers with minimal branding
-
-This contemporary look works for modern weddings, gallery openings, and upscale restaurants with a relaxed vibe.
-
-Remember, the key to styling white sneakers for dressier occasions is to ensure they're impeccably clean and high-quality. Visit The Fashion World in Amarpur to explore our premium footwear collection!
+Visit The Fashion World to explore our complete accessories collection.
     `,
     author: "Vikram Singh",
-    date: "2025-04-10",
-    imageUrl: "/lovable-uploads/326ccca9-366e-4003-bfd8-a81f194f9bbe.png",
-    tags: ["footwear", "sneakers", "styling tips", "men's fashion"],
+    date: "2025-04-17",
+    imageUrl: "/lovable-uploads/520fc937-aa71-4377-bbbf-ed27354a6ab7.png",
+    tags: ["accessories", "men's fashion", "style tips"],
+    category: "Style Guide"
+  },
+  {
+    id: "3",
+    title: "Why Chains Are the King of Street Style",
+    slug: "chains-king-street-style",
+    excerpt: "Chains have taken over the streets — from rappers to influencers, everyone is rocking chains. Whether it's gold-plated, silver, or black matte, chains add attitude to your look.",
+    content: `
+# Why Chains Are the King of Street Style
+
+Chains have taken over the streets — from rappers to influencers, everyone is rocking chains. Whether it's gold-plated, silver, or black matte, chains add attitude to your look. 
+
+## Popular Chain Styles:
+* Classic Gold-Plated
+* Sleek Silver
+* Edgy Black Matte
+* Mixed Metal Designs
+* Custom Pendants
+
+Pair them with oversized tees or open jackets and see how your style game levels up instantly.
+    `,
+    author: "Rahul Sharma",
+    date: "2025-04-16",
+    imageUrl: "/lovable-uploads/5caa1746-43f8-4a1e-8563-6e58746d1aa1.png",
+    tags: ["chains", "street style", "accessories"],
+    category: "Accessories"
+  },
+  {
+    id: "4",
+    title: "The Rise of Pen Hookahs in Men's Fashion",
+    slug: "pen-hookahs-mens-fashion",
+    excerpt: "Pen hookahs aren't just smoking tools — they're fashion icons now. Stylish designs, LED tips, and customized colors have made hookahs a cool part of urban outfits.",
+    content: `
+# The Rise of Pen Hookahs in Men's Fashion
+
+Pen hookahs aren't just smoking tools — they're fashion icons now. Stylish designs, LED tips, and customized colors have made hookahs a cool part of urban outfits. 
+
+## Trending Features:
+* LED Light Tips
+* Custom Colors
+* Sleek Designs
+* Portable Sizes
+* Modern Materials
+
+The Fashion World offers pen hookahs that match your personality, style, and budget.
+    `,
+    author: "Vikram Singh",
+    date: "2025-04-15",
+    imageUrl: "/lovable-uploads/646cab6e-1804-4712-b118-f75f5c60aa08.png",
+    tags: ["hookah", "accessories", "lifestyle"],
+    category: "Lifestyle"
+  },
+  {
+    id: "5",
+    title: "Watches vs. Smartwatches – What Should You Wear?",
+    slug: "watches-vs-smartwatches",
+    excerpt: "A traditional watch adds class and elegance, while a smartwatch shows you're modern and tech-savvy. But what if you could mix both?",
+    content: `
+# Watches vs. Smartwatches – What Should You Wear?
+
+A traditional watch adds class and elegance, while a smartwatch shows you're modern and tech-savvy. But what if you could mix both? 
+
+## Traditional Watches:
+* Timeless Appeal
+* Status Symbol
+* No Charging Needed
+* Classic Design
+
+## Smartwatches:
+* Modern Features 
+* Health Tracking
+* Notifications
+* Customizable Faces
+
+Explore our new collection of hybrid watches — classic designs with a smart touch, made just for the new generation of trendsetters.
+    `,
+    author: "Rahul Sharma",
+    date: "2025-04-14",
+    imageUrl: "/lovable-uploads/ad9bbc5d-3b05-46f9-af2f-bf080df81e0c.png",
+    tags: ["watches", "smartwatches", "accessories"],
+    category: "Tech & Style"
+  },
+  {
+    id: "6",
+    title: "Fashion Tips for School & College Students",
+    slug: "fashion-tips-students",
+    excerpt: "Don't let your uniform kill your style. Accessorize smartly — a clean chain, a subtle ring, stylish shoes, and a confident smile can make all the difference.",
+    content: `
+# Fashion Tips for School & College Students
+
+Don't let your uniform kill your style. Here's how to stand out while following the rules.
+
+## Smart Accessorizing:
+* Clean, Simple Chains
+* Subtle Rings
+* Stylish Shoes
+* Classic Watches
+* Neat Hairstyles
+
+At The Fashion World, we help students stand out without breaking rules or the bank.
+    `,
+    author: "Vikram Singh",
+    date: "2025-04-13",
+    imageUrl: "/lovable-uploads/94c7536b-37bc-47a6-aeb3-ca3c82b45aa1.png",
+    tags: ["student fashion", "accessories", "style tips"],
+    category: "Style Guide"
+  },
+  {
+    id: "7",
+    title: "How to Choose the Right Ring for Your Personality",
+    slug: "choose-right-ring-personality",
+    excerpt: "Rings say a lot about you. Bold and big? You're confident. Simple and sleek? You're classy. Our collection helps you find the perfect ring that reflects your personality.",
+    content: `
+# How to Choose the Right Ring for Your Personality
+
+Rings say a lot about you. Let's find your perfect match.
+
+## Ring Styles & Personalities:
+* Bold & Big - Confident & Outgoing
+* Simple & Sleek - Classic & Sophisticated
+* Gemstone - Artistic & Unique
+* Black Metal - Modern & Edgy
+* Mixed Materials - Creative & Versatile
+
+Explore our collection of silver, black, golden, and gemstone rings that speak your style.
+    `,
+    author: "Rahul Sharma",
+    date: "2025-04-12",
+    imageUrl: "/lovable-uploads/85c397be-ee0d-446a-877c-6541a4211418.png",
+    tags: ["rings", "accessories", "personality"],
     category: "Style Guide"
   }
 ];
