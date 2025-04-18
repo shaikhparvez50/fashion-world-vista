@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Home, ShoppingBag, MessageSquare, MapPin, InfoCircle, Mail } from "lucide-react";
+import { Home, ShoppingBag, MessageSquare, MapPin, Info, Mail } from "lucide-react";
 import {
   Sidebar as ShadcnSidebar,
   SidebarContent,
@@ -17,7 +17,7 @@ const navItems = [
   { name: "Collections", href: "/collections", icon: ShoppingBag },
   { name: "Blog", href: "/blog", icon: MessageSquare },
   { name: "Store Location", href: "/store-location", icon: MapPin },
-  { name: "About", href: "/#about", icon: InfoCircle },
+  { name: "About", href: "/#about", icon: Info },
   { name: "Contact", href: "/#contact", icon: Mail },
 ];
 
