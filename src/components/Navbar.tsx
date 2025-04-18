@@ -3,6 +3,7 @@ import { Menu, X, ShoppingBag, Instagram, Facebook } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import LoginSignup from "./LoginSignup";
 import { useNavigate, useLocation } from "react-router-dom";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +22,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Close mobile menu when location changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
@@ -37,17 +37,14 @@ const Navbar = () => {
 
   const handleNavigate = (href: string) => {
     if (href.startsWith('#') && location.pathname === '/') {
-      // If it's a hash link on the homepage, use hash navigation
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     } else if (href.includes('#') && !href.startsWith('#')) {
-      // If it's a hash link on another page, navigate to that page
       const [path, hash] = href.split('#');
       navigate(path);
       setTimeout(() => {
         document.querySelector(`#${hash}`)?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     } else {
-      // Regular navigation
       navigate(href);
     }
     setIsMobileMenuOpen(false);
@@ -62,7 +59,8 @@ const Navbar = () => {
       }`}
     >
       <div className="content-container flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <SidebarTrigger className="lg:hidden" />
           <a href="/" className="flex items-center">
             <h1 className="text-2xl font-bold font-playfair tracking-wider text-fashion-dark-gray dark:text-white whitespace-nowrap">
               THE FASHION WORLD
@@ -70,7 +68,6 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8">
           {navLinks.map((link) => (
             <a
@@ -89,7 +86,6 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Right side buttons */}
         <div className="flex items-center space-x-2">
           <a 
             href="https://www.instagram.com/the_faison_world?utm_source=qr&igsh=MTB1MmwwdGNkd2Z6YQ==" 
@@ -105,7 +101,6 @@ const Navbar = () => {
           <LoginSignup />
           <ThemeToggle />
           
-          {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="ml-2 p-2 rounded-md lg:hidden"
@@ -120,7 +115,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-fashion-dark shadow-xl p-4 absolute top-full left-0 right-0 animate-fade-in">
           <nav className="flex flex-col space-y-4">
