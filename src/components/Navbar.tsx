@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag, Instagram, Facebook } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
@@ -30,6 +29,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Collections", href: "/collections" },
+    { name: "Blog", href: "/blog" },
     { name: "Store Location", href: "/store-location" },
     { name: "About", href: "/#about" },
     { name: "Contact", href: "/#contact" },
