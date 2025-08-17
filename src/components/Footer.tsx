@@ -102,9 +102,15 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             &copy; {year} The Fashion World. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex space-x-6 mt-4 md:mt-0 items-center">
             <a href="#" className="text-gray-400 text-sm hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="text-gray-400 text-sm hover:text-white transition-colors">Terms of Service</a>
+            <button 
+              onClick={() => window.location.href = '/post'}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors text-sm"
+            >
+              Post
+            </button>
           </div>
         </div>
       </div>
